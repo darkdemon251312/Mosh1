@@ -1,0 +1,177 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://ParallaxBackground.gd" type="Script" id=1]
+[ext_resource path="res://back.jpg" type="Texture" id=2]
+[ext_resource path="res://player.gd" type="Script" id=3]
+[ext_resource path="res://Individual Sprites/adventurer-idle-00.png" type="Texture" id=4]
+[ext_resource path="res://Individual Sprites/adventurer-idle-01.png" type="Texture" id=5]
+[ext_resource path="res://Individual Sprites/adventurer-idle-02.png" type="Texture" id=6]
+[ext_resource path="res://Individual Sprites/adventurer-idle-03.png" type="Texture" id=7]
+[ext_resource path="res://Individual Sprites/adventurer-crnr-jmp-00.png" type="Texture" id=8]
+[ext_resource path="res://Individual Sprites/adventurer-crnr-jmp-01.png" type="Texture" id=9]
+[ext_resource path="res://Individual Sprites/adventurer-run-00.png" type="Texture" id=10]
+[ext_resource path="res://Individual Sprites/adventurer-run-01.png" type="Texture" id=11]
+[ext_resource path="res://Individual Sprites/adventurer-run-02.png" type="Texture" id=12]
+[ext_resource path="res://Individual Sprites/adventurer-run-03.png" type="Texture" id=13]
+[ext_resource path="res://Individual Sprites/adventurer-run-04.png" type="Texture" id=14]
+[ext_resource path="res://Individual Sprites/adventurer-run-05.png" type="Texture" id=15]
+[ext_resource path="res://suelo.tres" type="TileSet" id=16]
+[ext_resource path="res://zombie.tscn" type="PackedScene" id=17]
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "jump",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "run",
+"speed": 8.0
+} ]
+_sections_unfolded = [ "Resource" ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 14.9889
+height = 34.0482
+
+[node name="mundo" type="Node" index="0"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = true
+script = ExtResource( 1 )
+_sections_unfolded = [ "Scroll" ]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
+
+motion_scale = Vector2( 0.1, 0.1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 1024, 512 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer" index="0"]
+
+scale = Vector2( 2, 1.11897 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 100000, 900 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="player" type="KinematicBody2D" parent="." index="1"]
+
+position = Vector2( 44.4253, 432.345 )
+scale = Vector2( 1.5, 1.5 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="AnimatedSprite" parent="player" index="0"]
+
+position = Vector2( -0.158539, -2.37827 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "Idle"
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player" index="1"]
+
+position = Vector2( -0.527039, 2.60095 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="player" index="2"]
+
+position = Vector2( -0.792786, 1.42697 )
+offset = Vector2( -100, 0 )
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 0.8, 0.8 )
+limit_left = 0
+limit_top = -10000000
+limit_right = 2200
+limit_bottom = 514
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+_sections_unfolded = [ "Limit" ]
+
+[node name="TileMap" type="TileMap" parent="." index="2"]
+
+position = Vector2( 0, -96.376 )
+mode = 0
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 917567, 0, 0, 983103, 0, 0, 1048639, 0, 0, 1114175, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179652, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1179657, 0, 0, 1179658, 0, 0, 1179659, 0, 0, 1179660, 0, 0, 1179661, 0, 0, 1179662, 0, 0, 1179663, 0, 0, 1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0, 1179680, 0, 0, 1179681, 0, 0, 1179682, 0, 0, 1179683, 0, 0, 1179684, 0, 0, 1179685, 0, 0, 1179686, 0, 0, 1179687, 0, 0, 1179688, 0, 0, 1179689, 0, 0, 1179690, 0, 0, 1179691, 0, 0, 1179692, 0, 0, 1179693, 0, 0, 1179694, 0, 0, 1179695, 0, 0, 1179696, 0, 0, 1179697, 0, 0, 1179698, 0, 0, 1179699, 0, 0, 1179700, 0, 0, 1179701, 0, 0, 1179702, 0, 0, 1179703, 0, 0, 1179704, 0, 0, 1179705, 0, 0, 1179706, 0, 0, 1179707, 0, 0, 1179708, 0, 0, 1179709, 0, 0, 1179710, 0, 0, 1179711, 0, 0, 1179712, 0, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="zombies" type="Node" parent="." index="3"]
+
+editor/display_folded = true
+
+[node name="StaticBody2D" parent="zombies" index="0" instance=ExtResource( 17 )]
+
+position = Vector2( 688, 448 )
+
+[node name="StaticBody2D2" parent="zombies" index="1" instance=ExtResource( 17 )]
+
+position = Vector2( 880, 448 )
+
+[node name="StaticBody2D3" parent="zombies" index="2" instance=ExtResource( 17 )]
+
+position = Vector2( 640, 448 )
+
+[node name="StaticBody2D4" parent="zombies" index="3" instance=ExtResource( 17 )]
+
+position = Vector2( 1024, 448 )
+
+
