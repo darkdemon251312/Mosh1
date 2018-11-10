@@ -48,6 +48,7 @@ height = 34.0482
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." index="0"]
 
+editor/display_folded = true
 layer = -1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -106,16 +107,15 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="player" index="2"]
 
-position = Vector2( -0.792786, 1.42697 )
 offset = Vector2( -100, 0 )
 anchor_mode = 0
 rotating = false
 current = true
 zoom = Vector2( 0.8, 0.8 )
 limit_left = 0
-limit_top = -10000000
+limit_top = -1000
 limit_right = 2200
-limit_bottom = 514
+limit_bottom = 520
 limit_smoothed = false
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
