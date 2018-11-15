@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://ParallaxBackground.gd" type="Script" id=1]
 [ext_resource path="res://back.jpg" type="Texture" id=2]
@@ -7,16 +7,23 @@
 [ext_resource path="res://Individual Sprites/adventurer-idle-01.png" type="Texture" id=5]
 [ext_resource path="res://Individual Sprites/adventurer-idle-02.png" type="Texture" id=6]
 [ext_resource path="res://Individual Sprites/adventurer-idle-03.png" type="Texture" id=7]
-[ext_resource path="res://Individual Sprites/adventurer-crnr-jmp-00.png" type="Texture" id=8]
-[ext_resource path="res://Individual Sprites/adventurer-crnr-jmp-01.png" type="Texture" id=9]
-[ext_resource path="res://Individual Sprites/adventurer-run-00.png" type="Texture" id=10]
-[ext_resource path="res://Individual Sprites/adventurer-run-01.png" type="Texture" id=11]
-[ext_resource path="res://Individual Sprites/adventurer-run-02.png" type="Texture" id=12]
-[ext_resource path="res://Individual Sprites/adventurer-run-03.png" type="Texture" id=13]
-[ext_resource path="res://Individual Sprites/adventurer-run-04.png" type="Texture" id=14]
-[ext_resource path="res://Individual Sprites/adventurer-run-05.png" type="Texture" id=15]
-[ext_resource path="res://suelo.tres" type="TileSet" id=16]
-[ext_resource path="res://zombie.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Individual Sprites/adventurer-attack1-04.png" type="Texture" id=8]
+[ext_resource path="res://Individual Sprites/adventurer-attack1-03.png" type="Texture" id=9]
+[ext_resource path="res://Individual Sprites/adventurer-attack1-02.png" type="Texture" id=10]
+[ext_resource path="res://Individual Sprites/adventurer-attack1-01.png" type="Texture" id=11]
+[ext_resource path="res://Individual Sprites/adventurer-attack1-00.png" type="Texture" id=12]
+[ext_resource path="res://Individual Sprites/adventurer-run-00.png" type="Texture" id=13]
+[ext_resource path="res://Individual Sprites/adventurer-run-01.png" type="Texture" id=14]
+[ext_resource path="res://Individual Sprites/adventurer-run-02.png" type="Texture" id=15]
+[ext_resource path="res://Individual Sprites/adventurer-run-03.png" type="Texture" id=16]
+[ext_resource path="res://Individual Sprites/adventurer-run-04.png" type="Texture" id=17]
+[ext_resource path="res://Individual Sprites/adventurer-run-05.png" type="Texture" id=18]
+[ext_resource path="res://Individual Sprites/adventurer-crnr-jmp-00.png" type="Texture" id=19]
+[ext_resource path="res://Individual Sprites/adventurer-crnr-jmp-01.png" type="Texture" id=20]
+[ext_resource path="res://suelo.tres" type="TileSet" id=21]
+[ext_resource path="res://zombie.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Sketch Gothic School.ttf" type="DynamicFontData" id=23]
+[ext_resource path="res://Txt-Tiempo.gd" type="Script" id=24]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -26,15 +33,20 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "jump",
+"name": "attack",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
 "loop": true,
 "name": "run",
 "speed": 8.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "jump",
+"speed": 10.0
 } ]
 _sections_unfolded = [ "Resource" ]
 
@@ -43,6 +55,14 @@ _sections_unfolded = [ "Resource" ]
 custom_solver_bias = 0.0
 radius = 14.9889
 height = 34.0482
+
+[sub_resource type="DynamicFont" id=3]
+
+size = 40
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 23 )
+_sections_unfolded = [ "Font", "Settings" ]
 
 [node name="mundo" type="Node" index="0"]
 
@@ -81,6 +101,7 @@ _sections_unfolded = [ "Offset", "Region", "Transform" ]
 
 [node name="player" type="KinematicBody2D" parent="." index="1"]
 
+editor/display_folded = true
 position = Vector2( 44.4253, 432.345 )
 scale = Vector2( 1.5, 1.5 )
 input_pickable = false
@@ -98,6 +119,7 @@ position = Vector2( -0.158539, -2.37827 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "Idle"
+frame = 3
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player" index="1"]
@@ -136,7 +158,7 @@ _sections_unfolded = [ "Limit" ]
 
 position = Vector2( 0, -96.376 )
 mode = 0
-tile_set = ExtResource( 16 )
+tile_set = ExtResource( 21 )
 cell_size = Vector2( 32, 32 )
 cell_quadrant_size = 16
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
@@ -158,20 +180,88 @@ _sections_unfolded = [ "Cell" ]
 
 editor/display_folded = true
 
-[node name="StaticBody2D" parent="zombies" index="0" instance=ExtResource( 17 )]
+[node name="StaticBody2D" parent="zombies" index="0" instance=ExtResource( 22 )]
 
 position = Vector2( 688, 448 )
 
-[node name="StaticBody2D2" parent="zombies" index="1" instance=ExtResource( 17 )]
+[node name="StaticBody2D2" parent="zombies" index="1" instance=ExtResource( 22 )]
 
 position = Vector2( 880, 448 )
 
-[node name="StaticBody2D3" parent="zombies" index="2" instance=ExtResource( 17 )]
+[node name="StaticBody2D3" parent="zombies" index="2" instance=ExtResource( 22 )]
 
 position = Vector2( 640, 448 )
 
-[node name="StaticBody2D4" parent="zombies" index="3" instance=ExtResource( 17 )]
+[node name="StaticBody2D4" parent="zombies" index="3" instance=ExtResource( 22 )]
 
 position = Vector2( 1024, 448 )
+
+[node name="GUI" type="CanvasLayer" parent="." index="4"]
+
+editor/display_folded = true
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Txt-Tiempo" type="Label" parent="GUI" index="0"]
+
+editor/display_folded = true
+modulate = Color( 0.246094, 0.0115356, 0.0115356, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 40.0
+margin_top = 10.0
+margin_right = 114.0
+margin_bottom = 53.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "2:00"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script = ExtResource( 24 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Tiempo" type="Timer" parent="GUI/Txt-Tiempo" index="0"]
+
+process_mode = 1
+wait_time = 120.0
+one_shot = true
+autostart = true
+
+[node name="Txt-Points" type="Label" parent="GUI" index="1"]
+
+modulate = Color( 0.246094, 0.0115356, 0.0115356, 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 910.0
+margin_top = 10.0
+margin_right = 990.0
+margin_bottom = 53.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_fonts/font = SubResource( 3 )
+text = "00000"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Visibility" ]
 
 
