@@ -33,4 +33,4 @@ func _on_Sprite_animation_finished():
 	if $Sprite.animation == "attack" :
 		attack = false
 		$Sprite.play("run")
-	#$Sprite.animation 
+

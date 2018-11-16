@@ -81,20 +81,32 @@ group = null
 texture_normal = ExtResource( 4 )
 _sections_unfolded = [ "Textures", "Transform", "Visibility" ]
 
-[node name="Button_Menu" type="TouchScreenButton" parent="." index="4"]
+[node name="Button_Menu" type="TextureButton" parent="." index="4"]
 
-position = Vector2( 250, 240 )
-normal = ExtResource( 5 )
-pressed = null
-bitmask = null
-shape = null
-shape_centered = true
-shape_visible = true
-passby_press = false
-action = ""
-visibility_mode = 0
-_sections_unfolded = [ "Transform", "Visibility" ]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 210.0
+margin_top = 240.0
+margin_right = 378.0
+margin_bottom = 417.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+texture_normal = ExtResource( 5 )
+_sections_unfolded = [ "Textures", "Transform", "Visibility" ]
 
 [connection signal="pressed" from="Button_Restart" to="." method="_on_Button_Restart_released"]
+
+[connection signal="pressed" from="Button_Menu" to="." method="_on_Button_Menu_pressed"]
 
 
