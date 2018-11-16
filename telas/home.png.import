@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/adventurer-v1.5-Sheet.png-41ea203d4d77b947c37d122f1818eeb7.stex"
+path="res://.import/home.png-84e75e48a8182472a964aeb07473abda.stex"
 
 [deps]
 
-source_file="res://adventurer-v1.5-Sheet.png"
-dest_files=[ "res://.import/adventurer-v1.5-Sheet.png-41ea203d4d77b947c37d122f1818eeb7.stex" ]
+source_file="res://telas/home.png"
+dest_files=[ "res://.import/home.png-84e75e48a8182472a964aeb07473abda.stex" ]
 
 [params]
 
