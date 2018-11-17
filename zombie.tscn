@@ -29,7 +29,6 @@ height = 35.4645
 
 [node name="StaticBody2D" type="StaticBody2D"]
 
-editor/display_folded = true
 position = Vector2( 684.254, 445.587 )
 scale = Vector2( 1.08139, 1.09558 )
 input_pickable = false
@@ -41,9 +40,6 @@ friction = 1.0
 bounce = 0.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="zombie" type="AnimatedSprite" parent="." index="0"]
 
