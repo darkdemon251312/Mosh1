@@ -3,10 +3,12 @@ extends KinematicBody2D
 var movimiento = Vector2()
 var attack = false
 const UP = Vector2(0, -1)
-const VELOCIDAD = 215
+var VELOCIDAD = 255
 const GRAVEDAD = 20
 const SALTO = -500
-
+signal Muerte_punk
+signal Muerte_metacho
+signal Castigo
 
 func _physics_process(delta):
 	
@@ -15,12 +17,11 @@ func _physics_process(delta):
 	
 	
 	if is_on_floor():
-		
 		if Input.is_action_pressed("ui_up"):
 			movimiento.y = SALTO
 			$Sprite.play("jump")
 		elif !attack:
-			$Sprite.play("run")
+			$Sprite.play("Run")
 	
 	movimiento = move_and_slide(movimiento, UP) 
 
@@ -30,8 +31,17 @@ func _physics_process(delta):
 	
 
 func _on_Sprite_animation_finished():
-	if $Sprite.animation == "attack" :
+	if $Sprite.animation == "attack":
 		attack = false
-		$Sprite.play("run")
+		$Sprite.play("Run")
 
+func _on_Area2D_body_entered(body):
+	if $Sprite.animation == "attack":
+		body.Muerte()
+		emit_signal("Muerte_punk")
+		emit_signal("Muerte_metacho")
+	else:
+		position.x -= 40
+		emit_signal("Castigo")
+	
 

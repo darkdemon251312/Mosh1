@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Metacho.gd" type="Script" id=1]
+[ext_resource path="res://enemigo/Metacho/saltarin.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 34.2774, 39.1317 )
+
+[node name="Metacho" type="KinematicBody2D" index="0"]
+
+position = Vector2( 714.979, 297.069 )
+input_pickable = false
+collision_layer = 4
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="metacho" type="Sprite" parent="." index="0"]
+
+scale = Vector2( 0.154542, 0.157849 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( -4.52026, -0.514954 )
+shape = SubResource( 1 )
+
+
