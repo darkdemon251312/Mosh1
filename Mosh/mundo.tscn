@@ -79,7 +79,7 @@ _sections_unfolded = [ "Font", "Settings" ]
 custom_solver_bias = 0.0
 extents = Vector2( 10, 4.11803 )
 
-[node name="mundo" type="Node" index="0"]
+[node name="mundo" type="Node"]
 
 script = ExtResource( 1 )
 
