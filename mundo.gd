@@ -1,6 +1,6 @@
 extends Node
 
-var Cuenta_regresiva = 60
+var Cuenta_regresiva = 120
 var Game_over = false
 var Tiempo_Global = 0
 var Tiempos_Clave = [32, 67, 120, 170, 1000]
@@ -21,7 +21,7 @@ func Revisar_eventos():
 	pass
 
 func _ready():
-	Cuenta_regresiva = 60
+	Cuenta_regresiva = 120
 	Game_over = false
 
 func _process(delta):
@@ -45,7 +45,7 @@ func _on_Tiempo_timeout():
 
 #cuando el jugado mate a un enemigo que este corriendo gana 2 segundos de tiempo en el reloj
 func _on_player_Muerte_punk():
-	Cuenta_regresiva += 2
+	Cuenta_regresiva += 3
 
 #cada vez que el jugador mate a un enemigo que salte gana 5 segundos de tiempo en el reloj
 func _on_player_Muerte_metacho():
@@ -53,9 +53,14 @@ func _on_player_Muerte_metacho():
 
 #cada vez que el jugador es golpeado con un enemigo se descuenta el reloj
 func _on_player_Castigo():
-	Cuenta_regresiva -= 3
+	Cuenta_regresiva -= 2
 
 #cuando el personaje llega a la meta sale pantalla de triunfo
 func _on_meta_body_entered(body):
-	get_tree().change_scene("res://pantallas/Triunfo.tscn")
+	get_tree().change_scene("res://pantallas/Meta.tscn")
+
+func _on_player_Actualizar_Patada(Patada):
+	get_node("GUI/Patadas").text = "Patadas: " + str (Patada)
+
+
 

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var Vida = 2
 var posicion_inicial
 var posicion_final
 var velocidad = 1
@@ -26,5 +27,8 @@ func _process(delta):
 		$".".position.x -= velocidad
 		
 func Muerte():
-	$".".queue_free()
+	Vida -= 1
+	if Vida == 0:
+		$".".queue_free()
+	
 

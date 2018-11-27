@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 34.2774, 39.1317 )
 
-[node name="Metacho" type="KinematicBody2D" index="0"]
+[node name="Metacho" type="KinematicBody2D"]
 
 position = Vector2( 714.979, 297.069 )
 input_pickable = false

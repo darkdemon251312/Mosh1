@@ -4,8 +4,7 @@ extends KinematicBody2D
 var posicion_inicial
 var posicion_final
 var velocidad = 1
-var Vida = 2
-
+var Vida = 1
 
 
 func _ready():
@@ -21,5 +20,6 @@ func Muerte():
 	Vida -= 1
 	if Vida == 0:
 		$".".queue_free()
+	
 
 
